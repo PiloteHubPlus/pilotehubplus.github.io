@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E4C87F;
+    --gold-dark: #A8862D;
+    --navy: #0A1628;
+    --navy-light: #122442;
+    --navy-card: #0F1F38;
+    --navy-muted: #1A3158;
+    --bg-light: #F5F7FA;
+    --bg-dark: #070E1A;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #0A1628;
+    background-color: #F5F7FA;
+    overflow-x: hidden;
+  }
+}
+
+.font-serif-display {
+  font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', Times, serif;
+}
+
+.font-heading {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(10, 22, 40, 0.05);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(201, 168, 76, 0.4);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 168, 76, 0.7);
+}
+
+/* Gold glow and glass enhancements */
+.gold-glow {
+  box-shadow: 0 0 35px -5px rgba(201, 168, 76, 0.35);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #F3E2B3 0%, #C9A84C 50%, #9E7D2E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-border-gradient {
+  border-image: linear-gradient(135deg, #C9A84C, rgba(201, 168, 76, 0.2)) 1;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.03); }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}

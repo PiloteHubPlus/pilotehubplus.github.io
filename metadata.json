@@ -1,0 +1,6 @@
+{
+  "name": "Pilotehub+ Educational Platform",
+  "description": "Comprehensive free educational platform for middle and high school students featuring courses, exercises, exams, interactive dashboard, streak tracking, study timers, and subject curriculum.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

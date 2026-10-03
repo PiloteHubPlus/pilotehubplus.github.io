@@ -1,0 +1,75 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Private student profile holding authentication identity, school name, and study level.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 128 },
+        "displayName": { "type": "string", "maxLength": 80 },
+        "school": { "type": "string", "maxLength": 100 },
+        "grade": { "type": "string", "maxLength": 50 },
+        "level": { "type": "string", "maxLength": 50 },
+        "createdAt": { "type": "string", "maxLength": 50 },
+        "isGuest": { "type": "boolean" },
+        "photoURL": { "type": "string", "maxLength": 500 }
+      },
+      "required": ["uid", "email", "displayName", "grade", "level"]
+    },
+    "UserProgress": {
+      "title": "UserProgress",
+      "description": "Student daily study streak, total minutes, XP points, badge milestones, and subject revision notes.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "userName": { "type": "string", "maxLength": 80 },
+        "selectedGrade": { "type": "string", "maxLength": 50 },
+        "selectedLevel": { "type": "string", "maxLength": 50 },
+        "currentStreak": { "type": "number" },
+        "longestStreak": { "type": "number" },
+        "lastStudyDate": { "type": "string", "maxLength": 50 },
+        "totalMinutesStudied": { "type": "number" },
+        "dailyGoalMinutes": { "type": "number" },
+        "xp": { "type": "number" },
+        "completedResourceIds": { "type": "array" },
+        "bookmarkedResourceIds": { "type": "array" },
+        "unlockedBadges": { "type": "array" },
+        "notes": { "type": "object" },
+        "activityHistory": { "type": "object" },
+        "customTimerPresets": { "type": "array" }
+      },
+      "required": ["userId", "currentStreak", "longestStreak", "totalMinutesStudied", "xp"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Verified student feedback, star rating, and review testimonial.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "author": { "type": "string", "maxLength": 80, "minLength": 2 },
+        "school": { "type": "string", "maxLength": 100 },
+        "grade": { "type": "string", "maxLength": 50 },
+        "stars": { "type": "number" },
+        "comment": { "type": "string", "maxLength": 2000, "minLength": 3 },
+        "date": { "type": "string", "maxLength": 50 },
+        "userId": { "type": "string", "maxLength": 128 }
+      },
+      "required": ["author", "stars", "comment"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Private user profiles. Accessible strictly by the owner student (request.auth.uid == userId). Listing disabled."
+    },
+    "/progress/{userId}": {
+      "schema": { "$ref": "#/entities/UserProgress" },
+      "description": "Isolated learning records, streaks, and personal study notes. Accessible strictly by the owner student. Listing disabled."
+    },
+    "/reviews/{reviewId}": {
+      "schema": { "$ref": "#/entities/Review" },
+      "description": "Community student reviews. Publicly readable; writable only by authenticated students with strict validation; immutable once created."
+    }
+  }
+}
